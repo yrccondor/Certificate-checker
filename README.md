@@ -8,7 +8,7 @@ cd Certificate-checker
 ```
 ## Dependence
 - curl
-- python3
+- Python3
 
 ## Usage
 Edit <code>config.json</code> to configure which website you want to scan.
@@ -21,7 +21,7 @@ Like:
 }
 ```
 
-Then use it with <code>curl</code>
+Then use it with <code>curl</code>:
 ```
 python3 check.py
 ```
@@ -34,6 +34,7 @@ Start: 2018-01-02 17:30:51
 End: 2018-04-02 17:30:51
 Common Name: flyhigher.top
 Issuer Info: CN=Let's Encrypt Authority X3,O=Let's Encrypt,C=US
+------------
 ```
 
 ## Config
