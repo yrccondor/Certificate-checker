@@ -41,5 +41,5 @@ Issuer Info: CN=Let's Encrypt Authority X3,O=Let's Encrypt,C=US
 ## Config
 
 config.json:
-- website_list: The list of website. Only need host name (Without port/protocol).
+- website_list: The list of websites. Only need host name (Without port/protocol).
 - timeout: The duration while connecting.
