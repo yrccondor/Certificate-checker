@@ -1,0 +1,4 @@
+{
+    "website_list": ["example.com","test.example.com"],
+    "timeout": 10
+}
