@@ -27,6 +27,7 @@ python3 check.py
 ```
 If everything works, you will see:
 ```
+------------
 Certificate infomation about flyhigher.top:
 
 Check time: 2018-01-15 16:35:44
