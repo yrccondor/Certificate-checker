@@ -1,4 +1,4 @@
-# Check-certificate
+# Certificate checker
 A simple way to check certificate's infomation.
 
 ## Download
