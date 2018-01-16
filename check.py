@@ -9,6 +9,7 @@ with open('config.json', 'r', encoding='UTF-8') as fr:
 websitelist = config['website_list']
 print('------------')
 time_out = str(config.get('timeout', 10))
+sleep_time = str(config.get('sleep', 2))
 for i in range(len(websitelist)):
     comm0 = "curl https://"+websitelist[i]+" --connect-timeout "+time_out+" -v -s -o /dev/null 2>/tmp/ca.info ; cat /tmp/ca.info"
     out_bytes0 = subprocess.check_output(comm0, shell=True)
@@ -38,4 +39,4 @@ for i in range(len(websitelist)):
     else:
         print('Error: Connect Failed.')
         print('------------')
-    time.sleep(2) #睡两秒
+    time.sleep(sleep_time)
