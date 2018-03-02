@@ -2,5 +2,6 @@
     "website_list": ["example.com","test.example.com"],
     "timeout": 10,
     "sleep": 10,
-    "output": "print"
+    "output": "print",
+    "save_result": "result.json"
 }

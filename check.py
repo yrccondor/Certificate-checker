@@ -3,7 +3,8 @@ import subprocess
 import os
 import json
 import time
- 
+
+j = {}
 with open('config.json', 'r', encoding='UTF-8') as fr:
     config = json.load(fr)
 output_type = config.get('output', "print")
@@ -18,6 +19,9 @@ if output_type == "print_details":
 sleep_time = config.get('sleep', 2)
 if output_type == "print_details":
     print("["+time.strftime("%H:%M:%S", time.localtime())+"] Read output successfully. Value: "+str(sleep_time)+"s")
+save_result = config.get('save_result', '')
+if output_type == "print_details":
+    print("["+time.strftime("%H:%M:%S", time.localtime())+"] Read save_result successfully. Value: "+str(save_result))
 for i in range(len(websitelist)):
     if output_type == "print_details":
         print("["+time.strftime("%H:%M:%S", time.localtime())+"] Scanning "+websitelist[i]+"("+str(i+1)+" in "+str(len(websitelist))+").")
@@ -56,6 +60,13 @@ for i in range(len(websitelist)):
         print('Common Name: '+out_text4[16:-1])
         print('Issuer Info: '+out_text3[11:-1])
         print('-----------------------------')
+        if save_result != '':
+            j[websitelist[i]] = {}
+            j[websitelist[i]]['check'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            j[websitelist[i]]['start'] = time.strftime("%Y-%m-%d %H:%M:%S",time.strptime(out_text1[-25:-5],"%b %d %H:%M:%S %Y"))
+            j[websitelist[i]]['end'] = time.strftime("%Y-%m-%d %H:%M:%S",time.strptime(out_text2[-25:-5],"%b %d %H:%M:%S %Y"))
+            j[websitelist[i]]['common_name'] = out_text4[16:-1]
+            j[websitelist[i]]['issuer'] = out_text3[11:-1]
     else:
         if output_type == "print_details":
             print("["+time.strftime("%H:%M:%S", time.localtime())+"] No reponse(Time out).")
@@ -66,4 +77,10 @@ for i in range(len(websitelist)):
         print('Error: Connect Failed.')
         print('-----------------------------')
         os.system('rm -f /tmp/ca.info')
+        if save_result != '':
+            j[websitelist[i]] = {}
+            j[websitelist[i]]['check'] = 'failed.'
     time.sleep(sleep_time)
+if save_result != '':
+    with open(save_result, 'w', encoding='UTF-8') as fp:
+        json.dump(j, fp)
